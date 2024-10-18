@@ -16,7 +16,7 @@
 TFT_eSPI tft = TFT_eSPI();
 
 // WIFI authentication vars
-const char* USER = "zcabplb@ucl.ac.uk";
+const char* USER = "";
 const char* PASS = "";
 
 // time ntp servers and time zone localisation
@@ -53,7 +53,6 @@ void setup() {
   tft.init();
   Serial.begin(115200);
 
-
   // Display Setup
   tft.init();
   tft.fillScreen(TFT_BLACK);
@@ -69,10 +68,12 @@ void setup() {
   WiFi.begin("eduroam");
 
   Serial.print("Connecting");
+  tft.println("Connecting");
 
   while ((WiFi.status() != WL_CONNECTED)) {
     delay(500);
     Serial.print(".");
+    tft.println(".");
   }
 
   Serial.println("");
